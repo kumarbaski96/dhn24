@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+RewriteRule ^ %1 [R,L,NC]
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+RewriteRule ^(.*)\.do$  $1.php [NC,L]
+
+#FOR SEO FRIENDLY VIRTUAL URL
+RewriteRule ^(.*)\.html$  default.php?page=$1&%{QUERY_STRING}
+RewriteRule ^(.*)\.htm$  default.php?page=$1&%{QUERY_STRING} [NC,L]
