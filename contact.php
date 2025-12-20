@@ -110,25 +110,25 @@ if (isset($error)) echo "<p class='error'>$error</p>";
 
 
 
-
+          <!-- <?php $admincall = $dbcon->fetchSingle("admin","id=1"); ?>
           <div class="column2 pt-5 mt-5">
             <div class="contact-para contact-info-align">
               <h4 class="info mb-3">Location</h4>
-                 <p>#135 block, Barnard St.<br>
-                  Brooklyn, NY 10036, USA</p>
+                 <p> <p><?php echo $admincall['address'];?>,  <?php echo $admincall['zip'];?>,</p><br>
+                  <?php echo $admincall['country'];?></p>
              </div>
             
             <div class="contact-info-align">
               <h4 class="info mb-3">Email</h4>
-              <p><a href="mailto:example@mail.com"> example@mail.com</a></p>
+              <p><a href="<?php echo $admincall['email'];?>"><?php echo $admincall['email'];?></a></p>
              
             </div>
             <div class="contact-info-align">
               <h4 class="info mb-3">Phone</h4>
-              <p><a href="tel:+404 11-22-89"> +123 45 67 89</a></p>
+              <p><a href="<?php echo $admincall['phone_no'];?>"><?php echo $admincall['phone_no'];?></a></p>
               
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
      
