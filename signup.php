@@ -1,108 +1,83 @@
-<?php 
-session_start();
-?>
-  <html lang="en-US">
-  <head>
-  	<meta charset="UTF-8">
-  	<title>my page</title>
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<?php
+include 'conn.php';
+$msg = "";
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+/* ================= REGISTER ================= */
+if (isset($_POST['register'])) {
 
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    $uname = trim($_POST['uname']);
+    $email = trim($_POST['email']);
+    $mobile = trim($_POST['mobile']);
+    $pass = trim($_POST['pass']);
+    $confpass = trim($_POST['confpass']);
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
- <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
-  <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
-  <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
-  </head>
-  <body>
-  <?php 
- include 'conn.php'; 
- if(isset($_POST['submit']))
- {
-	$t1=mysqli_real_escape_string($con, $_POST['t1']);
-	$t2=mysqli_real_escape_string($con, $_POST['t2']);
-	$t3=mysqli_real_escape_string($con, $_POST['t3']);
-	$t4=mysqli_real_escape_string($con, $_POST['t4']);
-	$t5=mysqli_real_escape_string($con, $_POST['t5']);	
-	
-	$pass = password_hash($t4, PASSWORD_BCRYPT);
-	$pass1 = password_hash($t5, PASSWORD_BCRYPT);
-	$emailquery ="SELECT * FROM signup WHERE email = '$t2'";
-	$query = mysqli_query($con, $emailquery);
-	$emailcount = mysqli_num_rows($query);
-	if($emailcount>0)
-	{?>
-				<script>
-					alert("Email id already Exist");
-				</script>
-			<?php }
-	else
-	{
-		if($t4===$t5)
-		{
-			$insertquery="INSERT INTO `signup`(`uname`, `email`, `mobile`, `pass`, `confpass`) VALUES ('$t1','$t2','$t3','$pass','$pass1')";
-			$iquery = mysqli_query($con, $insertquery);
-			if($iquery)
-			{ ?>
-				<script>
-					alert("data inserted");
-				</script>
-				
-    	<?php }
-			else
-			{ ?>
-				<script>
-					alert("data not inserted");
-				</script>
-			<?php }
-		}
-		else
-		{?>
-				<script>
-					alert("Password not matched");
-				</script>
-	<?php }
-			
-	}
-	
+    /* ===== CHECK DUPLICATE USERNAME ===== */
+    $checkUname = "SELECT id FROM signup WHERE uname='$uname'";
+    $resUname = $conn->query($checkUname);
+
+    if ($resUname->num_rows > 0) {
+        $msg = "Username already exists! Choose another one.";
+    }
+
+    /* ===== CHECK DUPLICATE EMAIL ===== */
+    else {
+        $checkEmail = "SELECT id FROM signup WHERE email='$email'";
+        $resEmail = $conn->query($checkEmail);
+
+        if ($resEmail->num_rows > 0) {
+            $msg = "Email already registered! Please login.";
+        }
+
+        /* ===== PASSWORD MATCH ===== */
+        else if ($pass !== $confpass) {
+            $msg = "Password mismatch!";
+        }
+
+        /* ===== INSERT USER ===== */
+        else {
+            $sql = "INSERT INTO signup (uname,email,mobile,pass,confpass)
+                    VALUES ('$uname','$email','$mobile','$pass','$confpass')";
+
+            if ($conn->query($sql)) {
+                $msg = "Registration successful. <a href='login.php'>Login Now</a>";
+            } else {
+                $msg = "Registration failed!";
+            }
+        }
+    }
 }
-  ?>
-  <div class="container">
-	<div class="col-lg-6 m-auto">
-		<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST">
-		<br><br>
-			<div class="card">
-				<div class="card-header bg-dark">
-					<h1 class="text-white text-center">Registration Form</h1>
-				</div><br>
-				<label for="">Name</label><br>
-				<input type="text" name="t1" class="form-control" placeholder="Enter your name"  />
-				<label for="">E-mail</label><br>
-				<input type="Email" name="t2" class="form-control"placeholder="Enter your Email"  />
-				
-				<label for="">Mobile no.</label><br>
-				<input type="text" name="t3" class="form-control" placeholder="Enter your mobile"  />
-				
-				<label for="">Password</label><br>
-				<input type="password" name="t4" class="form-control" placeholder="Enter password" required/>
-				
-				<label for="">Conferm-Password</label><br>
-				<input type="password" name="t5" class="form-control" placeholder="Enter your Password again" required/><br><br>
-				
-				<input type="submit" class="form-control btn btn-success text-white text-center " name="submit" value="Register" /><br><br>
-				<label class="text-center"for="">Go to Login page? <a href="login.php">Login</a></label><br>
-				
-			</div>
-	
-		</form>
-	</div>
-  </div>
-   
-  </body>
-  </html>
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Signup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="col-md-5 mx-auto card p-4 shadow">
+        <h3 class="text-center mb-3">Admin Registration</h3>
+
+        <?php if ($msg) { ?>
+            <div class="alert alert-info"><?= $msg ?></div>
+        <?php } ?>
+
+        <form method="post">
+            <input type="text" name="uname" class="form-control mb-2" placeholder="Username" required>
+            <input type="email" name="email" class="form-control mb-2" placeholder="Email" required>
+            <input type="text" name="mobile" class="form-control mb-2" placeholder="Mobile" required>
+            <input type="password" name="pass" class="form-control mb-2" placeholder="Password" required>
+            <input type="password" name="confpass" class="form-control mb-2" placeholder="Confirm Password" required>
+            <button name="register" class="btn btn-success w-100">Register</button>
+        </form>
+
+        <hr>
+        <p class="text-center">
+            Already registered? <a href="login.php">Login Here</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

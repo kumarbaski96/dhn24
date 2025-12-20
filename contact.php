@@ -9,7 +9,6 @@ $dbcon = new DBConn('web');
   <body>
 	<?php include 'header.php';?>
 
-
 <section class="w3l-contact-breadcrum">
   <div class="breadcrum-bg py-sm-5 py-4">
     <div class="container py-lg-3">
@@ -24,32 +23,94 @@ $dbcon = new DBConn('web');
         <div class="contacts12-main">
           <div class="heading text-center mx-auto">
             <h3 class="head">Keep In Touch With Us.</h3>
-            <p class="my-3 head"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+            <!-- <p class="my-3 head"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
               Nulla mollis dapibus nunc, ut rhoncus
-              turpis sodales quis. Integer sit amet mattis quam.</p>
+              turpis sodales quis. Integer sit amet mattis quam.</p> -->
           </div>
          
-          <form action="https://sendmail.w3layouts.com/submitForm" method="post">
-            <div class="main-input pt-5 mt-3">
-              <div>
-               
-                <input type="text" name="w3lName" id="w3lName" placeholder="Your Name" class="contact-input">
-              </div>
-              <div>
-               
-                <input type="email" name="w3lSender" id="w3lSender" placeholder="Your Email id" class="contact-input" required="">
-              </div>
-              <div>
-              
-                <input type="text" name="w3lSubject" id="w3lSubject" placeholder="Subject" class="contact-input">
-              </div>
-            </div>
-           
-            <textarea class="contact-textarea" name="w3lMessage" id="w3lMessage" placeholder="Type your message here" required=""></textarea>
-            <div class="text-center">
-              <button class="btn btn-secondary btn-theme2">Submit Now</button>
-            </div>
-          </form>
+          <?php
+
+?>
+
+
+
+<!-- ================= SUCCESS / ERROR MESSAGE ================= -->
+<?php
+// ================= DATABASE CONNECTION =================
+include 'conn.php';
+
+// ================= FORM SUBMIT =================
+if (isset($_POST['submit'])) {
+
+    $name    = mysqli_real_escape_string($conn, $_POST['w3lName']);
+    $email   = mysqli_real_escape_string($conn, $_POST['w3lSender']);
+    $subject = mysqli_real_escape_string($conn, $_POST['w3lSubject']);
+    $message = mysqli_real_escape_string($conn, $_POST['w3lMessage']);
+
+    // ================= INSERT INTO DATABASE =================
+    $sql = "INSERT INTO contact_messages (name, email, subject, message)
+            VALUES ('$name', '$email', '$subject', '$message')";
+
+    if (mysqli_query($conn, $sql)) {
+
+        // ================= SEND EMAIL =================
+        $to = "baski12.kumar@gmail.com"; // 🔴 change to your email
+        $email_subject = "New Contact Message: $subject";
+
+        $email_body = "
+        Name: $name
+        Email: $email
+        Subject: $subject
+
+        Message:
+        $message
+        ";
+
+        $headers  = "From: $email\r\n";
+        $headers .= "Reply-To: $email\r\n";
+
+        mail($to, $email_subject, $email_body, $headers);
+
+        $success = "Message sent successfully!";
+    } else {
+        $error = "Error: " . mysqli_error($conn);
+    }
+}
+?>
+
+<!-- ================= SUCCESS / ERROR ================= -->
+<?php
+if (isset($success)) echo "<p class='success'>$success</p>";
+if (isset($error)) echo "<p class='error'>$error</p>";
+?>
+
+<!-- ================= CONTACT FORM ================= -->
+<form method="post" action="">
+    <div class="main-input pt-5 mt-3">
+        <div>
+            <input type="text" name="w3lName" placeholder="Your Name" class="contact-input" required>
+        </div>
+        <div>
+            <input type="email" name="w3lSender" placeholder="Your Email id" class="contact-input" required>
+        </div>
+        <div>
+            <input type="text" name="w3lSubject" placeholder="Subject" class="contact-input">
+        </div>
+    </div>
+
+    <textarea class="contact-textarea" name="w3lMessage"
+        placeholder="Type your message here" required></textarea>
+
+    <div class="text-center">
+        <button type="submit" name="submit" class="btn btn-secondary btn-theme2">
+            Submit Now
+        </button>
+    </div>
+</form>
+
+
+
+
           <div class="column2 pt-5 mt-5">
             <div class="contact-para contact-info-align">
               <h4 class="info mb-3">Location</h4>

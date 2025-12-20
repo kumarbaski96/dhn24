@@ -12,28 +12,46 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.php">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="services.php">Services</a>
-          </li>
-        
-          <li class="nav-item">
-            <a class="nav-link" href="contact.php">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="signup_login.php">Admin Login</a>
-          </li>
-        </ul>
+       <?php
+
+include 'conn.php';
+
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
+
+<ul class="navbar-nav mx-auto">
+<?php
+$sql = "SELECT * FROM header_menu WHERE status = 1 ORDER BY menu_order ASC";
+$result = mysqli_query($conn, $sql);
+
+while ($row = mysqli_fetch_assoc($result)) {
+
+    // Hide Admin Login if already logged in
+    if ($row['menu_name'] == 'Admin Login' && isset($_SESSION['admin'])) {
+        continue;
+    }
+
+    // Add Dashboard & Logout dynamically
+    if ($row['menu_name'] == 'Admin Login' && isset($_SESSION['admin'])) {
+        continue;
+    }
+
+    $active = ($current_page == $row['menu_link']) ? 'active' : '';
+    ?>
+    <li class="nav-item">
+        <a class="nav-link <?= $active ?>" href="<?= $row['menu_link']; ?>">
+            <?= htmlspecialchars($row['menu_name']); ?>
+        </a>
+    </li>
+<?php } ?>
+
+
+</ul>
+
         <!--form action="search-results.html" class="form-inline position-relative my-2 my-lg-0">
           <input class="form-control search" type="search" placeholder="Search here..." aria-label="Search" required="">
           <button class="btn btn-search position-absolute" type="submit"><span class="fa fa-search" aria-hidden="true"></span></button>
-        </form-->
+</form--></div>
 		<div class="d-grid grid-col-2 bottom-copies">
         
             <div class="main-social-footer-29">

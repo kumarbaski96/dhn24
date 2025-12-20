@@ -44,7 +44,8 @@ $newsResult = $conn->query("SELECT * FROM news ORDER BY id DESC LIMIT 10");
             <a href="show_news.php">Manage News</a>
             <a href="manage_about.php">Manage About</a>
             <a href="manage_servises.php">Manage Services</a>
-            <a href="users.php">Users</a>
+            <a href="manage_contact_msg.php">Manage contact message</a>
+            <a href="manage_header.php">manage_header.php</a>
             <a href="logout.php">Logout</a>
         </div>
 

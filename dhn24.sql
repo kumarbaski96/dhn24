@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2025 at 07:17 PM
+-- Generation Time: Dec 20, 2025 at 06:28 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -104,35 +104,49 @@ INSERT INTO `admin_login` (`id`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contact_messages`
+--
+
+CREATE TABLE `contact_messages` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `subject` varchar(150) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contact_messages`
+--
+
+INSERT INTO `contact_messages` (`id`, `name`, `email`, `subject`, `message`, `created_at`) VALUES
+(2, 'Baski', 'baski12.kumar@gmail.com', 'Just like that', 'hello want know about you?', '2025-12-20 15:59:15');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `header_menu`
 --
 
 CREATE TABLE `header_menu` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `link` varchar(255) NOT NULL,
-  `type` int(11) NOT NULL DEFAULT 0 COMMENT '1 for ecours & 0 for normal menu',
-  `editable` int(11) NOT NULL DEFAULT 1 COMMENT '0 for not editable & 1 for editable',
-  `precedence` int(11) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 for blocked & 1 for unblocked'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `menu_name` varchar(100) NOT NULL,
+  `menu_link` varchar(150) NOT NULL,
+  `menu_order` int(11) DEFAULT 0,
+  `status` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `header_menu`
 --
 
-INSERT INTO `header_menu` (`id`, `name`, `link`, `type`, `editable`, `precedence`, `status`) VALUES
-(1, 'Home', 'index', 0, 1, 1, 1),
-(2, 'About', 'about', 0, 1, 2, 1),
-(3, 'Gallery', 'gallery', 0, 1, 3, 1),
-(4, 'Contact', 'contact', 0, 1, 4, 1),
-(5, 'Reservation', 'reservation', 0, 1, 5, 0),
-(6, 'Contacts', 'contact', 0, 1, 6, 0),
-(7, 'Charting', '', 0, 1, 7, 0),
-(8, 'Videos', '', 0, 1, 8, 0),
-(9, 'Photos', '', 0, 1, 9, 0),
-(10, 'Ask Questions', '', 0, 1, 10, 0),
-(11, 'Blog', '', 0, 1, 11, 0);
+INSERT INTO `header_menu` (`id`, `menu_name`, `menu_link`, `menu_order`, `status`) VALUES
+(1, 'Home', 'index.php', 1, 1),
+(2, 'About', 'about.php', 2, 1),
+(3, 'Services', 'services.php', 3, 1),
+(4, 'Contact', 'contact.php', 4, 1),
+(5, 'Admin Login', 'signup.php', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -203,7 +217,7 @@ CREATE TABLE `signup` (
 --
 
 INSERT INTO `signup` (`id`, `uname`, `email`, `mobile`, `pass`, `confpass`) VALUES
-(0, 'baski', 'baski12.kumar@gmail.com', '7488162156', 'Sanoj@1992', 'Sanoj@1992');
+(7, 'baski', 'baski12.kumar@gmail.com', '6655', 'Baski@1992', 'Baski@1992');
 
 --
 -- Indexes for dumped tables
@@ -228,6 +242,12 @@ ALTER TABLE `admin_login`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `contact_messages`
+--
+ALTER TABLE `contact_messages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `header_menu`
 --
 ALTER TABLE `header_menu`
@@ -249,7 +269,9 @@ ALTER TABLE `services`
 -- Indexes for table `signup`
 --
 ALTER TABLE `signup`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uname` (`uname`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -268,6 +290,18 @@ ALTER TABLE `admin_login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `contact_messages`
+--
+ALTER TABLE `contact_messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `header_menu`
+--
+ALTER TABLE `header_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
@@ -278,6 +312,12 @@ ALTER TABLE `news`
 --
 ALTER TABLE `services`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `signup`
+--
+ALTER TABLE `signup`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

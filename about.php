@@ -8,6 +8,14 @@ $dbcon = new DBConn('web');
   <?php include 'top-application.php';?>
   <body>
 	<?php include 'header.php';?>
+    <section class="w3l-service-breadcrum">
+  <div class="breadcrum-bg py-sm-5 py-4">
+    <div class="container py-lg-3">
+      <h2>About us</h2>
+      <p><a href="index.html">Home</a> &nbsp; / &nbsp; About</p>
+    </div>
+  </div>
+</section>
 
 <!-- features-4 block -->
  <?php

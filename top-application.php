@@ -24,5 +24,9 @@
     object-fit: cover;
     border: 0;
 }
+
+        .success { color: green; }
+        .error { color: red; }
+
 </style>
   </head>
