@@ -16,5 +16,5 @@ if ($row['img']) {
 
 $conn->query("DELETE FROM news WHERE id=$id");
 
-header("Location: show_news.php");
+header("Location: manage_news.php");
 ?>

@@ -5,11 +5,11 @@ include 'conn.php'; // database connection
 
 // Fetch statistics
 $totalNews = $conn->query("SELECT COUNT(*) AS total FROM news")->fetch_assoc()['total'];
-$activeNews = $conn->query("SELECT COUNT(*) AS total FROM news WHERE status='active'")->fetch_assoc()['total'];
-$inactiveNews = $conn->query("SELECT COUNT(*) AS total FROM news WHERE status='inactive'")->fetch_assoc()['total'];
+$activeNews = $conn->query("SELECT COUNT(*) AS total FROM news WHERE status=1")->fetch_assoc()['total'];
+$inactiveNews = $conn->query("SELECT COUNT(*) AS total FROM news WHERE status=0")->fetch_assoc()['total'];
 
 // Fetch latest news
-$newsResult = $conn->query("SELECT * FROM news ORDER BY id DESC LIMIT 10");
+$newsResult = $conn->query("SELECT * FROM news ORDER BY id DESC LIMIT 7");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,11 +42,12 @@ $newsResult = $conn->query("SELECT * FROM news ORDER BY id DESC LIMIT 10");
             <h4 class="text-center">Admin Panel</h4>
             <hr>
             <a href="admin_details.php">Manage Admin details</a>
-            <a href="show_news.php">Manage News</a>
+            <a href="manage_news.php">Manage News</a>
             <a href="manage_about.php">Manage About</a>
             <a href="manage_servises.php">Manage Services</a>
             <a href="manage_contact_msg.php">Manage contact message</a>
             <a href="manage_header.php">manage_header.php</a>
+            <a href="manage_logo.php">Manage_Logo.php</a>
             <a href="logout.php">Logout</a>
         </div>
 
@@ -85,7 +86,7 @@ $newsResult = $conn->query("SELECT * FROM news ORDER BY id DESC LIMIT 10");
                                 <th>Title</th>
                                 <th>Status</th>
                                 <th>Date</th>
-                                <th>Action</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -99,10 +100,7 @@ $newsResult = $conn->query("SELECT * FROM news ORDER BY id DESC LIMIT 10");
                                     </span>
                                 </td>
                                 <td><?= date('d-m-Y', strtotime($row['content'])) ?></td>
-                                <td>
-                                    <a href="edit_news.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                                    <a href="delete_news.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
-                                </td>
+                               
                             </tr>
                         <?php } ?>
                         </tbody>

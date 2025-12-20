@@ -93,7 +93,7 @@ if (isset($_POST['save'])) {
         }
     }
 
-    header("Location: index.php");
+    header("Location: manage_news.php");
     exit;
 }
 ?>

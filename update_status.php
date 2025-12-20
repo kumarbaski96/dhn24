@@ -15,5 +15,5 @@ $sql = "UPDATE news SET status = $new_status WHERE id = $id";
 $conn->query($sql);
 
 // redirect back
-header("Location: show_news.php");
+header("Location: manage_news.php");
 exit;

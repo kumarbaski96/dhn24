@@ -3,9 +3,23 @@
     <div class="container">
       <!--a class="navbar-brand" href="index.html"><span class="fa fa-gg"></span> Corporite</a-->
       <!--if logo is image enable this -->  
-    <a class="navbar-brand" href="#index.html">
-        <img src="assets\images\dhn24logo.jpg" alt="Your logo" title="Your logo" style="height:50px;" />
-    </a> 
+      <?php
+include 'conn.php';
+
+/* Fetch active logo */
+$logo_sql = "SELECT * FROM logo WHERE status=1 ORDER BY id DESC LIMIT 1";
+$logo_res = $conn->query($logo_sql);
+$logo_data = $logo_res->fetch_assoc();
+?>
+
+    <a class="navbar-brand" href="<?= $logo_data['link'] ?? '#' ?>">
+            <?php if(!empty($logo_data['logo'])): ?>
+                <img src="<?= $logo_data['logo'] ?>" alt="<?= $logo_data['text_logo'] ?? 'Logo' ?>" 
+                     title="<?= $logo_data['text_logo'] ?? 'Logo' ?>" style="height:50px;">
+            <?php else: ?>
+                <?= $logo_data['text_logo'] ?? 'MySite' ?>
+            <?php endif; ?>
+        </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon fa fa-bars"></span>

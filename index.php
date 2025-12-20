@@ -13,6 +13,7 @@ $dbcon = new DBConn('web');
   <div class="breadcrum-bg py-sm-5 py-4">
     <div class="container py-lg-3">
       <h2>Our Latest News</h2>
+      
       <!--p><a href="index.html">Home</a> &nbsp; / &nbsp; About</p-->
     </div>
   </div>
@@ -98,6 +99,20 @@ $dbcon = new DBConn('web');
 
 
 <?php include 'footer.php';?>
+<div id="google_translate_element" style="display:none;"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'hi',   // original language of your news (change if needed)
+        includedLanguages: 'en,hi,ur,bn',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 
 </html>
