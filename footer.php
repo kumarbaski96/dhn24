@@ -37,12 +37,24 @@
         <p class="copy-footer-29">© 2023 Corporite. All rights reserved | Designed by <!--a
             href="https://w3layouts.com"--><?php echo $admincall['admin_name'];?><!--/a--></p>
             <div class="main-social-footer-29">
-              <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
-              <a href="#twitter" class="twitter"><span class="fa fa-youtube"></span></a>
-              <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
-              <!--a href="#google-plus" class="google-plus"><span class="fa fa-google-plus"></span></a>
-              <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a-->
-            </div>
+
+<?php
+$socials = mysqli_query(
+    $dbcon->conn,
+    "SELECT * FROM social_network WHERE status='1' ORDER BY id ASC"
+);
+
+while ($row = mysqli_fetch_assoc($socials)) {
+?>
+    <a href="<?php echo htmlspecialchars($row['url']); ?>"
+       class="<?php echo htmlspecialchars($row['name']); ?>"
+       target="_blank">
+        <span class="fa <?php echo htmlspecialchars($row['icon']); ?>"></span>
+    </a>
+<?php } ?>
+
+</div>
+
       </div>
     </div>
   </div>
