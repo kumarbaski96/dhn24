@@ -50,7 +50,7 @@ $newsResult = $conn->query("SELECT * FROM news ORDER BY id DESC LIMIT 7");
             <a href="manage_logo.php">Manage_Logo</a>
              <a href="manage_social_network.php">Manage_social_network</a>
                <a href="manage_contact_message.php">Manage_contact_message</a>
-            <a href="logout.php">Logout</a>
+            <a href="login.php">Logout</a>
         </div>
 
         <!-- Main Content -->

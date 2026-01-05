@@ -71,6 +71,11 @@ $result = mysqli_query($conn, "SELECT * FROM contact_messages ORDER BY id DESC")
 <body>
 
 <h2>Contact Messages</h2>
+<a href="admin_dashboard.php">
+    <button type="button" style="padding:10px 20px; cursor:pointer;">
+        ⬅ Go Back to Home
+    </button>
+</a>
 
 <table>
     <tr>

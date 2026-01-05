@@ -75,6 +75,11 @@ a{margin:0 5px;text-decoration:none}
 <body>
 
 <h2>📋 Header Menu Management</h2>
+<a href="admin_dashboard.php">
+    <button type="button" style="padding:10px 20px; cursor:pointer;">
+        ⬅ Go Back to Home
+    </button>
+</a>
 
 <!-- ================= FORM ================= -->
 <form method="post">

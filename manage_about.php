@@ -87,6 +87,11 @@ input,textarea{width:100%;padding:8px;margin-bottom:10px}
 <body>
 
 <h2 align="center">About Page Management</h2>
+<a href="admin_dashboard.php">
+    <button type="button" style="padding:10px 20px; cursor:pointer;">
+        ⬅ Go Back to Home
+    </button>
+</a>
 
 <!-- ================= EDIT FORM ================= -->
 <?php if ($editData['id'] != '') { ?>

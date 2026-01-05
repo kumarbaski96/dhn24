@@ -9,6 +9,7 @@
     <!-- //web fonts -->
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
 	
 <style type="text/css">
 .media-box {

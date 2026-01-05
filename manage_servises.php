@@ -99,6 +99,11 @@ input,textarea,select{width:100%;padding:7px;margin:4px 0}
 <body>
 
 <h2 align="center">Services CRUD (Single Page)</h2>
+<a href="admin_dashboard.php">
+    <button type="button" style="padding:10px 20px; cursor:pointer;">
+        ⬅ Go Back to Home
+    </button>
+</a>
 
 <!-- ================= FORM ================= -->
 <div class="form-box">

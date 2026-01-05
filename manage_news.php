@@ -26,6 +26,11 @@ $result = $conn->query("SELECT * FROM news ORDER BY id DESC LIMIT $limit OFFSET 
 <div class="container mt-5">
     <div class="d-flex justify-content-between mb-3">
         <h2>News Dashboard</h2>
+        <a href="admin_dashboard.php">
+    <button type="button" style="padding:10px 20px; cursor:pointer;">
+        ⬅ Go Back to Home
+    </button>
+</a>
         <div>
             <a href="logout.php" class="btn btn-danger">Logout</a>
             <a href="insert_news.php" class="btn btn-primary">+ Add News</a>

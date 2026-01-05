@@ -1,0 +1,114 @@
+.footer-modern {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  padding: 60px 0 30px;
+  position: relative;
+}
+
+.footer-overlay {
+  background: rgba(0,0,0,0.55);
+  padding: 40px 0;
+}
+
+.footer-box h6 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.footer-box p, 
+.footer-box a {
+  font-size: 14px;
+  color: #ddd;
+  line-height: 1.8;
+}
+
+.footer-box a:hover {
+  color: #00d4ff;
+}
+
+.footer-line {
+  border-color: rgba(255,255,255,0.2);
+  margin: 30px 0;
+}
+
+.copy-text {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.copy-text span {
+  color: #00d4ff;
+}
+
+.social-icons a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: #00d4ff;
+  color: #000;
+  transform: translateY(-4px);
+}
+
+.btn-back {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 18px;
+  border-radius: 25px;
+  background: #00d4ff;
+  color: #000;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.btn-back:hover {
+  background: #fff;
+  color: #000;
+}
+
+#movetop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  background: #00d4ff;
+  color: #000;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  border: none;
+}
+
+
+#goTopBtn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00d4ff, #007bff);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  display: none;
+  z-index: 9999;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+#goTopBtn:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(135deg, #007bff, #00d4ff);
+}
