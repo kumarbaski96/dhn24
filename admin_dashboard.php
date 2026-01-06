@@ -1,7 +1,14 @@
 <?php
+include 'conn.php'; 
 // admin_dashboard.php
 session_start();
-include 'conn.php'; // database connection
+
+if (!isset($_SESSION['admin'])) {
+    header("Location: login.php");
+    exit;
+}
+
+// database connection
 
 // Fetch statistics
 $totalNews = $conn->query("SELECT COUNT(*) AS total FROM news")->fetch_assoc()['total'];
@@ -50,7 +57,8 @@ $newsResult = $conn->query("SELECT * FROM news ORDER BY id DESC LIMIT 7");
             <a href="manage_logo.php">Manage_Logo</a>
              <a href="manage_social_network.php">Manage_social_network</a>
                <a href="manage_contact_message.php">Manage_contact_message</a>
-            <a href="login.php">Logout</a>
+               <a href="manage_news_comment.php">manage_news_comment</a>
+            <a href="logout.php">Logout</a>
         </div>
 
         <!-- Main Content -->

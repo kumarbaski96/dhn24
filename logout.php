@@ -1,13 +1,13 @@
 <?php
-session_start();
+session_start();   // Start the session
 
 // Unset all session variables
-$_SESSION = [];
+$_SESSION = array();
 
-// Destroy session
+// Destroy the session
 session_destroy();
 
-// Delete session cookie
+// Optional: delete session cookie (recommended)
 if (ini_get("session.use_cookies")) {
     $params = session_get_cookie_params();
     setcookie(
@@ -21,9 +21,7 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
-// Prevent caching
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Pragma: no-cache");
-
-header("Location: logout.php");
+// Redirect to login page
+header("Location: login.php");
 exit;
+?>
