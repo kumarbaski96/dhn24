@@ -2623,7 +2623,7 @@ h1, h2, h3, h4, h5, h6,
   line-height: 1.2; }
 
 h1, .h1 {
-  font-size: 2.5rem; }
+  font-size: 1.5rem; }
   @media (max-width: 1200px) {
     h1, .h1 {
       font-size: calc(1.375rem + 1.5vw) ; } }
@@ -8177,7 +8177,7 @@ button.bg-dark:focus {
 
 .pt-5,
 .py-5 {
-  padding-top: 3rem !important; }
+  padding-top: 0rem !important; }
 
 .pr-5,
 .px-5 {
@@ -8185,7 +8185,7 @@ button.bg-dark:focus {
 
 .pb-5,
 .py-5 {
-  padding-bottom: 3rem !important; }
+  padding-bottom: 0rem !important; }
 
 .pl-5,
 .px-5 {
@@ -8464,13 +8464,13 @@ button.bg-dark:focus {
     padding: 3rem !important; }
   .pt-sm-5,
   .py-sm-5 {
-    padding-top: 3rem !important; }
+    padding-top: 0rem !important; }
   .pr-sm-5,
   .px-sm-5 {
     padding-right: 3rem !important; }
   .pb-sm-5,
   .py-sm-5 {
-    padding-bottom: 3rem !important; }
+    padding-bottom: 0rem !important; }
   .pl-sm-5,
   .px-sm-5 {
     padding-left: 3rem !important; }

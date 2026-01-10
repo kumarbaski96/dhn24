@@ -2,8 +2,8 @@
 session_start();
 
 /* ================= DB CONNECTION ================= */
-include 'conn.php';
-
+include 'includes/dbconn.php';
+$dbcon = new DBConn('web');
 /* ================= PHPMailer ================= */
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

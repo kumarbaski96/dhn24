@@ -109,7 +109,7 @@ $totalPages = ceil($totalNews / $limit);
 <section class="w3l-about-breadcrum">
   <div class="breadcrum-bg py-sm-5 py-4">
     <div class="container py-lg-3">
-      <h2>Our Latest News</h2>
+      <h2 class="text-center">Our Latest News</h2>
     </div>
   </div>
 </section>
@@ -138,7 +138,7 @@ $totalPages = ceil($totalNews / $limit);
 
             <!-- HEADING -->
             <div class="heading text-center mx-auto mb-4">
-                <h3 class="head"><?= htmlspecialchars($homeimg['heading']); ?></h3>
+                <h1 class="head"><?= htmlspecialchars($homeimg['heading']); ?></h1>
                 <p class="my-2 head">Date : <?= date("d M Y", strtotime($homeimg['news_date'])); ?></p>
             </div>
 
