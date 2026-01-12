@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
         $row = $res->fetch_assoc();
         $_SESSION['admin_id'] = $row['id'];
         $_SESSION['admin']    = $row['uname'];
-        header("Location: admin_dashboard.php");
+        header("Location: admin_menu.php");
         exit;
     } else {
         $msg = "Invalid Username/Email or Password";

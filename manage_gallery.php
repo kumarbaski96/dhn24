@@ -83,6 +83,12 @@ if(isset($_GET['edit'])){
 
 <h3>Manage Gallery</h3>
 
+<a href="admin_menu.php">
+    <button type="button" style="padding:10px 20px; cursor:pointer;">
+        ⬅ Go Back to Home
+    </button>
+</a>
+
 <!-- ================= FORM ================= -->
 <form method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="<?php echo $editData['id'] ?? ''; ?>">

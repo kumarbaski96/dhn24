@@ -81,11 +81,12 @@ $comments = mysqli_query($dbcon->conn,
             <a href="manage_news_reaction.php">Click Here For Manage News Reaction</a>   
         </div>
     </form>
-      <a href="admin_dashboard.php">
+      <a href="admin_menu.php">
     <button type="button" style="padding:10px 20px; cursor:pointer;">
         ⬅ Go Back to Home
     </button>
 </a>
+
 
     <!-- COMMENTS TABLE -->
     <table class="table table-bordered bg-white">

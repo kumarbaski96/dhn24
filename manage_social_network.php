@@ -73,11 +73,12 @@ if (isset($_GET['edit'])) {
 <div class="container mt-5">
 
 <h3 class="mb-4">Social Network Manager</h3>
-<a href="admin_dashboard.php">
+<a href="admin_menu.php">
     <button type="button" style="padding:10px 20px; cursor:pointer;">
         ⬅ Go Back to Home
     </button>
 </a>
+
 
 <!-- ================= ADD / EDIT FORM ================= -->
 <div class="card mb-4">

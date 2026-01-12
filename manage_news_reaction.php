@@ -87,11 +87,12 @@ $reactions = mysqli_query($dbcon->conn,
 
 <div class="container py-5">
 <h3>Manage News Reactions</h3>
-  <a href="admin_dashboard.php">
+  <a href="admin_menu.php">
     <button type="button" style="padding:10px 20px; cursor:pointer;">
         ⬅ Go Back to Home
     </button>
 </a>
+
 
 <input type="text" id="searchBox" class="form-control mb-3"
        placeholder="Search by ID / News ID / IP">

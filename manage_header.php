@@ -80,8 +80,10 @@ a{text-decoration:none}
 
 <h2>📋 Header Menu & Submenu Manager</h2>
 
-<a href="admin_dashboard.php">
-<button type="button">⬅ Go Back to Home</button>
+<a href="admin_menu.php">
+    <button type="button" style="padding:10px 20px; cursor:pointer;">
+        ⬅ Go Back to Home
+    </button>
 </a>
 
 <!-- ================= FORM ================= -->

@@ -7,20 +7,20 @@ $conn = $dbcon->conn;
 /* ============ DELETE ============ */
 if(isset($_GET['delete'])){
     mysqli_query($conn,"DELETE FROM admin_menu WHERE id=".$_GET['delete']);
-    header("Location: manage_menu.php");
+    header("Location: manage_admin_menu.php");
 }
 
 /* ============ STATUS ============ */
 if(isset($_GET['status'])){
     mysqli_query($conn,"UPDATE admin_menu SET status=".$_GET['status']." WHERE id=".$_GET['id']);
-    header("Location: manage_menu.php");
+    header("Location: manage_admin_menu.php");
 }
 
 /* ============ ADD ============ */
 if(isset($_POST['add'])){
     mysqli_query($conn,"INSERT INTO admin_menu (parent_id,menu_name,menu_link,menu_order,status)
     VALUES ('$_POST[parent_id]','$_POST[menu_name]','$_POST[menu_link]','$_POST[menu_order]',1)");
-    header("Location: manage_menu.php");
+    header("Location: manage_admin_menu.php");
 }
 
 /* ============ UPDATE ============ */
@@ -52,6 +52,11 @@ if(isset($_GET['edit'])){
 
 <div class="container mt-4">
 <h3>Manage Admin Menu</h3>
+<a href="admin_menu.php">
+    <button type="button" style="padding:10px 20px; cursor:pointer;">
+        ⬅ Go Back to Home
+    </button>
+</a>
 
 <form method="post" class="card p-3 mb-4">
 <input type="hidden" name="id" value="<?= $edit['id'] ?? '' ?>">

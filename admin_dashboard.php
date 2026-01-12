@@ -53,7 +53,6 @@ $newsResult = $conn->query("SELECT * FROM news ORDER BY id DESC LIMIT 7");
             <a href="manage_about.php">Manage About</a>
             <a href="manage_servises.php">Manage Services</a>
             <a href="manage_gallery.php">Manage_Gallery</a>
-            <a href="manage_contact_msg.php">Manage contact message</a>
             <a href="manage_header.php">Manage_header</a>
             <a href="manage_logo.php">Manage_Logo</a>
              <a href="manage_social_network.php">Manage_social_network</a>
