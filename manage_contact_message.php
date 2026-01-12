@@ -6,16 +6,25 @@ include("conn.php");
 if(isset($_GET['delete'])){
     $id = (int)$_GET['delete'];
     mysqli_query($conn, "DELETE FROM contact_messages WHERE id=$id");
-    header("Location: manage_contact_messages.php");
+    header("Location: manage_contact_message.php");
     exit;
 }
 
-/* ===== STATUS TOGGLE ===== */
-if(isset($_GET['status'])){
-    $id = (int)$_GET['id'];
-    $new_status = ($_GET['status'] == 'read') ? 'unread' : 'read';
-    mysqli_query($conn, "UPDATE contact_messages SET status='$new_status' WHERE id=$id");
-    header("Location: manage_contact_messages.php");
+/* ===== STATUS TOGGLE (FIXED) ===== */
+if(isset($_GET['toggle'])){
+    $id = (int)$_GET['toggle'];
+
+    $q = mysqli_query($conn,"SELECT status FROM contact_messages WHERE id=$id");
+    $row = mysqli_fetch_assoc($q);
+
+    if($row['status'] == 'read'){
+        $new_status = 'unread';
+    } else {
+        $new_status = 'read';
+    }
+
+    mysqli_query($conn,"UPDATE contact_messages SET status='$new_status' WHERE id=$id");
+    header("Location: manage_contact_message.php");
     exit;
 }
 
@@ -105,7 +114,7 @@ $result = mysqli_query($conn, "SELECT * FROM contact_messages ORDER BY id DESC")
 
     <td>
         <div class="action">
-            <a href="?status=<?= $row['status']; ?>&id=<?= $row['id']; ?>"
+            <a href="?toggle=<?= $row['id']; ?>"
                class="btn <?= ($row['status']=='read')?'unread':'read'; ?>">
                <?= ($row['status']=='read')?'Mark Unread':'Mark Read'; ?>
             </a>
